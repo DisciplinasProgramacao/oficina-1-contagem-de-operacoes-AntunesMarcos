@@ -1,3 +1,4 @@
+
 import java.util.Random;
 
 public class App {
@@ -5,11 +6,13 @@ public class App {
     public static int[] tamanhosTesteMedio =   {  12_500,  25_000,  50_000,   100_000,   200_000 };
     public static int[] tamanhosTestePequeno = {       3,       6,      12,        24,        48 };
     public static Random aleatorio = new Random(42);
+    public static int operacoes = 0;
 
     public static int codigo1(int[] vetor) {
         int resposta = 0;
         for (int i = 0; i < vetor.length; i += 2) {
             resposta += vetor[i] % 2;
+            operacoes++;
         }
         return resposta;
     }
@@ -19,6 +22,7 @@ public class App {
         for (int k = (vetor.length - 1); k > 0; k /= 2) {
             for (int i = 0; i <= k; i++) {
                 contador++;
+                operacoes++; 
             }
         }
         return contador;
@@ -30,14 +34,17 @@ public class App {
             for (int j = i + 1; j < vetor.length; j++) {
                 if (vetor[j] < vetor[menor])
                     menor = j;
+                operacoes++; 
             }
             int temp = vetor[i];
             vetor[i] = vetor[menor];
             vetor[menor] = temp;
+            operacoes++; 
         }
     }
 
     public static int codigo4(int n) {
+        operacoes++; 
         if (n <= 2)
             return 1;
         else
